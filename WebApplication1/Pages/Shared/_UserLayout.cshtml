@@ -1,0 +1,349 @@
+﻿@inject IHttpContextAccessor Accessor
+@using MotelManagement.Common;
+@using MotelManagement.Data.Models;
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NHÀ TRỌ XANH LÁ</title>
+    <meta name="description" content="company is a real-estate template">
+    <meta name="author" content="Kimarotec">
+    <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Assets/User/assets/css/normalize.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/fontello.css">
+    <link href="~/Assets/User/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="~/Assets/User/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+    <link href="~/Assets/User/assets/css/animate.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/Assets/User/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/icheck.min_all.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/price-range.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/owl.theme.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/owl.transitions.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/style.css">
+    <link rel="stylesheet" href="~/Assets/User/assets/css/responsive.css">
+    @*Mới thêm*@
+    <link rel="stylesheet" href="~/Assets/User/assets/css/lightslider.min.css">
+</head>
+<style>
+    #topButton {
+        display: none;
+        position: fixed;
+        bottom: 60px;
+        right: 10px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        color: white;
+        cursor: pointer;
+        border-radius: 30px;
+        opacity: 0.7;
+    }
+        #topButton:hover {
+            background-color: #f1f1f1;
+        }
+</style>
+<button id="topButton"><img src='~/Assets/User/assets/img/top.png' title='lên đầu trang' width='14px' /></button>
+
+<body>
+
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- Body content -->
+    @*  <div class="header-connect">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-5 col-sm-8  col-xs-12">
+    <div class="header-half header-call">
+    <p>
+    <span><i class="pe-7s-call"></i> +84 374738192</span>
+    <span><i class="pe-7s-mail"></i> troxanhla@gmail.com</span>
+    </p>
+    </div>
+    </div>
+    <div class="col-md-2 col-md-offset-5  col-sm-3 col-sm-offset-1  col-xs-12">
+    <div class="header-half header-social">
+    <ul class="list-inline">
+    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    <li><a href="#"><i class="fa fa-vine"></i></a></li>
+    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> *@
+    <!--End top header -->
+    <nav class="navbar navbar-default ">
+        <div class="container">
+            <div class="navbar-brand" style="padding:0px; margin:0 auto">
+                <a href="../../../homepage"><img src="~/upload/logo.png" style=" object-fit:scale-down ;width : 200px; height:70px;" alt="logo"></a>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse yamm" id="navigation">
+                <div class="button navbar-right text-center">
+                    @{
+                        if (String.IsNullOrEmpty(@Accessor.HttpContext.Session.GetString("user")))
+                        {
+                            <button class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.4s" onclick="location.href = '../user/login';">
+                                <a href="../../../user/login" class="button-text">Đăng Nhập</a>
+                            </button>
+                            <button class="navbar-btn nav-button wow fadeInRight" data-wow-delay="0.5s" onclick="location.href = '../user/register';">
+                                <a href="../../../user/register" class="button-text">Đăng Kí</a>
+                            </button>
+                        }
+                    }
+                </div>
+                <ul class="main-nav nav navbar-nav navbar-right text-center" style="display:block">
+                    <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="../../../homepage">Giới thiệu</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="../../../listroomtype">Dịch vụ phòng</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.4s"><a class="" href="../../../room/list">Phòng Trọ</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.5s"><a class="" href="../../../news">Tin Tức</a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.6s"><a class="" href="../../../contact">Liên Hệ</a></li>
+
+                    @if (!String.IsNullOrEmpty(@Accessor.HttpContext.Session.GetString("user")))
+                    {
+                        User user = (User)JsonUtil.DeserializeObject<User>(Accessor.HttpContext.Session.GetString("user"));
+                        <li class="dropdown ymm-sw " data-wow-delay="0.1s">
+                            <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">
+                                Hello @user.FullName.Split(" ")[0]
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu navbar-nav">
+                                <li>
+                                    <a href="/user/myinfo">Thông tin cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="/user/mylistroom">Phòng của tôi</a>
+                                </li>
+                                <li>
+                                    <a href="/user/changepassword">Đổi mật khẩu</a>
+                                </li>
+                                <li>
+                                    <a href="/user/logout" onclick="alert('Tài khoản của bạn đã được đăng xuất!')">Đăng xuất</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- End of nav bar -->
+    <div>
+        @RenderBody()
+    </div>
+
+    <!-- Footer area-->
+    <div class="footer-area">
+
+        <div class=" footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInRight animated" style="height:400px">
+                        <div class="single-footer">
+                            <h4>Nhà Trọ Xanh Lá </h4>
+                            <div class="footer-title-line"></div>
+                            <img src="~/upload/logo.png" style=" object-fit:scale-down ;width : 200px; height:70px;" alt="logo" class="wow pulse" data-wow-delay="1s">
+                            <p>Nhà ở xanh, sạch, đẹp <br> Tiết kiệm thời gian và tiền bạc!</p>
+                            <ul class="footer-adress">
+                                <li><i class="pe-7s-map-marker strong"> </i> <a href="https://maps.app.goo.gl/GKDUdMrkw8GwNKYQ9">Số 10 P. Tạ Quang Bửu, Bách Khoa, Hai Bà Trưng, Hà Nội, Việt Nam</a></li>
+                                <li><i class="pe-7s-mail strong"> </i> <a href="mailto:support.eco@gmail.com">support.eco@gmail.com</a></li>
+                                <li><i class="pe-7s-call strong"> </i> <a href="tel:+84 835778789">+84 835778789</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInRight animated" style="height:400px">
+                        <div class="single-footer">
+                            <h4>VỀ CHÚNG TÔI </h4>
+                            <div class="footer-title-line"></div>
+                            <ul class="footer-menu">
+                                <li><a href="../../../homepage">Giới Thiệu</a>  </li>
+                                <li><a href="../../../listroomtype">Các Dịch Vụ Phòng</a>  </li>
+                                <li><a href="../../../contact">Liên Hệ</a></li>
+                                <li><a href="../../../faq">FAQ</a></li>
+                                <li><a href="../../../terms">Điều Khoản Sử Dụng</a></li>
+                                <li><a href="../../../recruit">Thông Tin Tuyển Dụng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInRight animated" style="height:400px">
+                        <div class="single-footer">
+                            <h4>Tin Tức</h4>
+                            <div class="footer-title-line"></div>
+                            <ul class="footer-blog">
+                                <li>
+                                    <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                        <a href="../../../news">
+                                            <img src="~/Assets/User/assets/img/demo/small-proerty-2.jpg">
+                                        </a>
+                                        <span class="blg-date">25-03-2023</span>
+
+                                    </div>
+                                    <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
+                                        <h6> <a href="../../../news">Phòng đang trống </a></h6>
+                                        <p style="line-height: 17px; padding: 8px 2px;">Diện tích 20m ...</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                        <a href="../../../news">
+                                            <img src="~/Assets/User/assets/img/esport.png">
+                                        </a>
+                                        <span class="blg-date">20-03-2023</span>
+
+                                    </div>
+                                    <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
+                                        <h6> <a href="../../../news">Tổ chức hội thao</a></h6>
+                                        <p style="line-height: 17px; padding: 8px 2px;">Các sự kiện Esport ...</p>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                                        <a href="../../../news">
+                                            <img src="~/Assets/User/assets/img/phong-tro-cho-thue.jpg">
+                                        </a>
+                                        <span class="blg-date">19-03-2023</span>
+
+                                    </div>
+                                    <div class="col-md-8  col-sm-8 col-xs-8  blg-entry">
+                                        <h6> <a href="../../../news">Cần Pass Gấp</a></h6>
+                                        <p style="line-height: 17px; padding: 8px 2px;">Bạn Nguyễn Quang Linh cần...</p>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInRight animated" style="height:400px">
+                        <div class="single-footer news-letter">
+                            <h4>Kết Nối</h4>
+                            <div class="footer-title-line"></div>
+                            <p>Tiêu chí của phòng trọ luôn mong muốn cho người dùng trải nghiệm tốt nhất khi ở đây</p>
+
+                            <form>
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="E-mail ... ">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary subscribe" type="button" onclick="alert('Cảm ơn bạn đã đăng ký nhận thông báo!')"><i class="pe-7s-paper-plane pe-2x"></i></button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                            </form>
+
+                            <div class="social pull-right">
+                                <ul>
+                                    <li><a class="wow fadeInUp animated" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.5s"><i class="fa fa-dribbble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-copy text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="pull-left">
+                        <span> (C) <a href="#">Nhà Trọ Xanh Lá</a> , All rights reserved 2024  </span>
+                    </div>
+                    <div class="bottom-menu pull-right">
+                        
+                        @* <ul>
+                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.2s">Trang chủ</a></li>
+                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.3s">Tin tức</a></li>
+                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.4s">Liên hệ</a></li>
+                        <li><a class="wow fadeInUp animated" href="#" data-wow-delay="0.5s">Tuyển dụng</a></li>
+                        </ul> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/Assets/User/assets/js/modernizr-2.6.2.min.js"></script>
+
+    <script src="~/Assets/User/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Assets/User/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Assets/User/assets/js/bootstrap-select.min.js"></script>
+    <script src="~/Assets/User/assets/js/bootstrap-hover-dropdown.js"></script>
+
+    <script src="~/Assets/User/assets/js/easypiechart.min.js"></script>
+    <script src="~/Assets/User/assets/js/jquery.easypiechart.min.js"></script>
+
+    <script src="~/Assets/User/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/User/assets/js/wow.js"></script>
+
+    <script src="~/Assets/User/assets/js/icheck.min.js"></script>
+    <script src="~/Assets/User/assets/js/price-range.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Assets/User/assets/js/main.js"></script>
+    @*Mới thêm*@
+    <script type="text/javascript" src="~/Assets/User/assets/js/lightslider.min.js"></script>
+    @*Back to top button*@
+    <script>
+        window.onscroll = function () { scrollFunction() };
+        function scrollFunction() {
+
+            if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
+                document.getElementById("topButton").style.display = "block";
+            } else {
+                document.getElementById("topButton").style.display = "none";
+            }
+        }
+
+        document.getElementById('topButton').addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

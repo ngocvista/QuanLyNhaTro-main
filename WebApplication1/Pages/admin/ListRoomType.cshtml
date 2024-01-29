@@ -1,0 +1,67 @@
+﻿@page "/admin/room/listroomtype"
+@using MotelManagement.Data.Models
+@model MotelManagement.Pages.admin.ListRoomTypeModel
+@{
+}
+
+<script>
+    function confirmDelete(roomTypeId) {
+        if (confirm('Bạn có chắc chắn muốn xóa loại phòng này không?')) {
+            window.location.href = '/admin/room/listroomtype/delete/' + roomTypeId;
+        }
+    }
+</script>
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <a href="/admin/room/addnewroomtype" class="btn btn-primary float-right">Thêm Loại phòng</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    @if (TempData["SuccessAddRoomTypeMessage"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["SuccessAddRoomTypeMessage"]
+                        </div>
+                    }
+                    @if (TempData["DeleteRoomTypeMessage"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["DeleteRoomTypeMessage"]
+                        </div>
+                    }
+                    <table class="table table-stripped table table-hover table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Mã số</th>
+                                <th>Tên loại phòng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (RoomType room in (List<RoomType>)@ViewData["roomsType"])
+                            {
+                                <tr>
+                                    <td>@room.RoomTypeId</td>
+                                    <td>@room.Name</td>
+                                    <td>
+                                        <a href="#" class="btn btn-danger" onclick="confirmDelete('@room.RoomTypeId')">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

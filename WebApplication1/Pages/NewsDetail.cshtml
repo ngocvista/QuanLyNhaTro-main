@@ -1,0 +1,31 @@
+﻿@page "/news/{id:int}"
+@model NewsDetailModel
+@{
+    ViewData["Title"] = "Tin tức";
+    Layout = "~/Pages/Shared/_UserLayout.cshtml";
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">@Model._room.header</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="container mt-4">
+    <div class="card">
+        <img src="~/upload/@Model._room.ImageArticle" class="card-img-top" alt="Tin tức">
+        <div class="card-body">
+            <h5 class="card-title">@Model._room.header</h5>
+            <p class="card-text">@Model._room.Content</p>
+            <!-- Thêm các nội dung tin tức chi tiết ở đây -->
+            <a href="../news" class="btn btn-primary">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
+
+<br />

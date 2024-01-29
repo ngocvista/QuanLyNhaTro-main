@@ -1,0 +1,45 @@
+﻿@page "/news"
+@model MotelManagement.Pages.NewsModel
+
+@{
+    ViewData["Title"] = "News";
+    Layout = "~/Pages/Shared/_UserLayout.cshtml";
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Tin tức</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4">Danh sách tin tức</h2>
+    <div class="row">
+
+        @if (Model.listArt != null)
+        {
+            foreach (var item in Model.listArt)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="~/upload/@item.ImageArticle" class="card-img-top" alt="Tin tức @item.Articelid">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.header</h5>
+                            <a href="/news/@item.Articelid" class="btn btn-primary">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h1> Chưa có bài viết nào</h1>
+        }
+    </div>
+</div>
+<br />

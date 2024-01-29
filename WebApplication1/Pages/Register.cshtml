@@ -1,0 +1,112 @@
+﻿@page "/user/register"
+@model MotelManagement.Pages.RegisterModel
+@using MotelManagement.Data.Models
+@{
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Đăng ký tài khoản </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+<!-- register-area -->
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+
+        <div class="" style="width:80%; margin:0 auto">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+
+                    <div class="text-center">
+                        <h2> Đăng ký </h2>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+                    @* asp-page-handler="Register" *@
+                    <form method="post" onsubmit="return ValidateForm()" asp-page-handler="Register">
+                        <div class="form-group">
+                            <label for="FullName">Họ Và Tên</label>
+                            <input type="text" class="form-control" id="fullname" name="FullName">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="email" name="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Gender">Giới tính</label>
+                            <div style="display:flex; justify-content:center">
+                                <div style="padding: 0px 32px 0px 0px">
+                                    <label for="true">Nam</label>
+                                    <input type="radio" style="padding-right:40px" class="form-control" name="gender" value="True" checked="checked">
+                                </div>
+                                <div>
+                                    <label for="false">Nữ</label>
+                                    <input type="radio" class="form-control" name="gender" value="False">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Mật Khẩu</label>
+                            <input type="password" id="password" class="form-control" name="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="Phone">Số Điện Thoại</label>
+                            <input type="number" id="phonenumber" class="form-control" name="Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="Address">Địa Chỉ</label>
+                            <input type="text" id="address" class="form-control" name="Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="Dob">Ngày Sinh</label>
+                            <input type="date" id="Birthday" class="form-control" name="Dob">
+                        </div>
+                        <div class="text-center" style="margin-top: 40px">
+                            <button type="submit" class="btn btn-default">Đăng Ký</button>
+                        </div>
+                        <div class="">
+                            <button type="button" class="btn btn-link" style="margin: 0 auto; width:100%" onclick="location.href = '/user/login'">Đã có tài khoản? Đăng nhập ngay!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+
+    function ValidateForm() {
+        var fullname = document.getElementById('fullname').value
+        var email = document.getElementById('email').value
+        var password = document.getElementById('password').value
+        var phonenumber = document.getElementById('phonenumber').value
+        var address = document.getElementById('address').value
+        var Birthday = document.getElementById('Birthday').value
+        console
+        if (fullname === '' || email === '' || password === '' || phonenumber === '' || address === '' || Birthday === '') {
+            console.log(" da log duoc vao trong ham");
+            alert("Bạn điền thiếu thông tin rồi, hãy kiểm tra lại nhé!");
+            return false;
+        }
+        
+        else return true;
+    }
+
+    function CallService() {
+        let params = (new URL(document.location)).searchParams;
+        window.location.href = "/user/register?handler=ExportBill&" + params;
+    }
+
+</script>

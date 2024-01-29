@@ -1,0 +1,135 @@
+﻿@page "/listRoomType"
+@using MotelManagement.Data.Models
+@model MotelManagement.Pages.admin.ListRoomTypeModel
+@{
+}
+<style>
+.lrt-table-header{
+    font-weight: bold;
+    color: black;
+    font-size:20px;
+}
+.lrt-table-row{
+    color: black;
+    font-size:15px;
+}
+.lrt-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.lrt-responsive-table {
+  li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+  }
+  .lrt-table-header {
+        background-color: #fdc600;
+        font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .lrt-table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .lrt-col-1 {
+    flex-basis: 10%;
+  }
+  .lrt-col-2 {
+    flex-basis: 40%;
+  }
+  .lrt-col-3 {
+    flex-basis: 25%;
+  }
+  .lrt-col-4 {
+    flex-basis: 25%;
+  }
+ 
+ @@media all and (max-width: 767px) {
+    .lrt-table-header {
+      display: none;
+    }
+    .lrt-table-row{
+      
+    }
+    li {
+      display: block;
+    }
+    .lrt-col {
+      
+      flex-basis: 100%;
+      
+    }
+    .lrt-col {
+      display: flex;
+      padding: 10px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+      }
+    }
+  }
+}
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Các loại dịch vụ phòng</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card card-table">
+            <div class="card-body booking_card" style="width:85%;margin:0 auto; margin-top: 50px; margin-bottom: 50px">
+                <div class="table-responsive" style="border:none">
+                    <div class="container" style="width:100%" >
+                        <ul class="lrt-responsive-table">
+                            <li class="lrt-table-header">
+                                <div class="lrt-col lrt-col-1">Mã số</div>
+                                <div class="lrt-col lrt-col-2">Tên loại phòng</div>
+                            </li>
+                            @foreach (RoomType room in (List<RoomType>)@ViewData["roomsType"])
+                            {
+                            <li class="lrt-table-row">
+                                    <div class="lrt-col lrt-col-1" data-label="Id">@room.RoomTypeId</div>
+                                    <div class="lrt-col lrt-col-2" data-label="Name">@room.Name</div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                    
+                    @* <table class="table table-stripped table table-hover table-center mb-0">
+                        <thead>
+                            <tr>
+                                <th>Mã số</th>
+                                <th>Tên loại phòng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (RoomType room in (List<RoomType>)@ViewData["roomsType"])
+                            {
+                                <tr>
+                                    <td>@room.RoomTypeId</td>
+                                    <td>@room.Name</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table> *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@page "/admin/article/list"
+@using MotelManagement.Data.Models
+@model MotelManagement.Pages.admin.ListArticleRoomModel
+@{
+}
+
+<script>
+    function confirmDelete(articleId) {
+        if (confirm('Bạn có chắc chắn muốn xóa bài viết này không?')) {
+            window.location.href = '/admin/Article/delete/' + articleId;
+        }
+    }
+</script>
+
+
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="mt-5">
+                <h4 class="card-title float-left mt-2">Danh Sách Tin Tức</h4>
+                <a href="/admin/article/addnew" class="btn btn-primary float-right">Thêm Tin Tức</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="card card-table">
+        <div class="card-body booking_card">
+            <div class="table-responsive">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                @if (TempData["DeleteMessage"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["DeleteMessage"]
+                    </div>
+                }
+                <table class="table table-stripped table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên đầu mục</th>
+                            <th>Miêu tả</th>
+                            <th>Hình ảnh</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ArticleRoom Article in (List<ArticleRoom>)@ViewData["lstArticleRoom"])
+                        {
+                            <tr>
+                                <td>@Article.Articelid</td>
+                                 <td>@Article.header</td>
+                                 <td>@Article.Content</td>
+                                 <td>
+                                     <img src="/upload/@Article.ImageArticle" width="30%">
+                                 </td>
+                                 <td>
+                                    <a href="/admin/article/edit/@Article.Articelid" class="btn btn-primary">Sửa</a>
+                                    <a href="#" class="btn btn-danger" onclick="confirmDelete('@Article.Articelid')">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

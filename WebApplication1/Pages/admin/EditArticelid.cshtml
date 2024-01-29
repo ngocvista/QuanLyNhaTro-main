@@ -1,0 +1,37 @@
+﻿@page "/admin/article/edit/{id:int}"
+@model MotelManagement.Pages.admin.EditArticelidModel
+@{
+}
+
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container" style="padding: 30px; margin-top:40px">
+
+        <div class="col-md-6" style="width:50%; margin:0 auto">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2 class="text-center">Sửa thông tin của tin tức: </h2>
+                    <form method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <div class="form-group">
+                            <label>Nhập tiêu đề</label>
+                            <input type="text" class="form-control" name="header" value="@ViewData["header"]">
+                        </div>
+                        <div class="form-group">
+                            <label>Chọn ảnh phòng</label>
+                            <input type="file" class="form-control" name="fileimage" multiple>
+                            <br>
+                            <img src="/upload/@ViewData["image"]" width="30%"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Nội dung</label>
+                            <textarea class="form-control" name="Content" rows="15">@ViewData["content"]</textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" >Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

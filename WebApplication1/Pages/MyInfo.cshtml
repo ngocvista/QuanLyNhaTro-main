@@ -1,0 +1,112 @@
+﻿@page "/user/myinfo"
+@model MotelManagement.Pages.MyInfoModel
+@inject IHttpContextAccessor Accessor
+@using MotelManagement.Common;
+@using MotelManagement.Data.Models;
+@{
+}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Thông tin tài khoản</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="info-account">
+    <div class="title-infor-account text-center">
+        <h2>Tài khoản của bạn </h2>
+    </div>
+    <div class="container" style="padding:30px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 sidebar-account">
+                <ul class="">
+                    <li>
+                        <a href="/user/myinfo">Thông tin cá nhân</a>
+                    </li>
+                    <li>
+                        <a href="/user/mylistroom">Phòng của tôi</a>
+                    </li>
+                    <li>
+                        <a href="/user/changepassword">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="/user/changeinfo">Sửa thông tin</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <div class="row">
+                    <div class="col-xs-12" id="customer_sidebar">
+                        @if (!String.IsNullOrEmpty(@Accessor.HttpContext.Session.GetString("user")))
+                        {
+                            User user = (User)JsonUtil.DeserializeObject<User>(Accessor.HttpContext.Session.GetString("user"));
+                            <table>
+                                <tr>
+                                    <td>Thông tin chủ tài khoản:</td>
+                                    <td>@user.FullName</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>@user.Email</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ:</td>
+                                    <td>@user.Address</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại:</td>
+                                    <td>@user.Phone</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Ngày sinh:</td>
+                                    <td>@user.Dob</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Giới tính:</td>
+                                    <td>
+                                        @if (@user.Gender == false)
+                                        {
+                                            <span>Nữ</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Nam</span>
+                                        }
+                                    </td>
+
+                                </tr>
+                            </table>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

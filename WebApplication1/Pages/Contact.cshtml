@@ -1,0 +1,99 @@
+﻿@page "/contact"
+@model MotelManagement.Pages.ContactModel
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Pages/Shared/_UserLayout.cshtml";
+}
+<style>
+    #mapCanvas {
+        width: 100%;
+        height: 600px;
+    }
+</style>
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4boxbOviqFol3lkf-2INiugcg1-f-diY"></script>
+    <script>
+        
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+        //21.046300, 105.793266
+        function initMap() {
+            var uluru = { lat: 21.002690, lng: 105.848620 };
+            var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                zoom: 18,
+                center: uluru
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: "Số 10 Tạ Quang Bửu"
+            });
+
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title: 'Địa chỉ'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+
+
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Liên hệ</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="" style="width:95%; margin:0 auto; padding:30px">
+
+
+        <div class="row contact-us">
+            <div class="col-md-6 col-sm-6 fade-box">
+                <img class="" src="./Assets/User/assets/img/ecohotel.png" alt="Liên hệ">
+            </div>
+            <div class="col-md-6 col-sm-6 pd_contact">
+                <div class="box-info-contact">
+                    <h4 class="text-center" style="font-weight:bold">Thông tin liên hệ</h4>
+                    <ul class="list-info">
+                        <li>
+                            <p>Địa chỉ chúng tôi:</p>
+                            <p><strong>Số 10 P. Tạ Quang Bửu, Bách Khoa, Hai Bà Trưng, Hà Nội, Việt Nam</strong></p>
+                        </li>
+                        <li>
+                            <p>Email chúng tôi:</p>
+                            <p><strong>support.eco@gmail.com</strong></p>
+                        </li>
+                        <li>
+                            <p>Điện thoại:</p>
+                            <p><strong>+84 835778789</strong></p>
+                        </li>
+                        <li>
+                            <p>Thời gian làm việc:</p>
+                            <p>
+                                <strong>
+                                    8am - 9pm<br>
+                                    Hỗ trợ online 24/7
+                                </strong>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <div style="">
+            <h4 class="text-center" style="font-weight:bold;padding:50px 0 20px 0">Bản đồ</h4>
+            <div class="map" id="mapCanvas"></div>
+        </div>
+    </div>
+</div>

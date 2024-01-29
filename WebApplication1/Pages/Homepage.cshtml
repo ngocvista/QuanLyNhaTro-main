@@ -1,0 +1,92 @@
+﻿@page "/homepage"
+@using MotelManagement.Common
+@using MotelManagement.Data.Models
+@model MotelManagement.Pages.HomepageModel
+
+@{
+    ViewData["Title"] = "Homepage";
+    Layout = "~/Pages/Shared/_UserLayout.cshtml";
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Trang chủ</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="" style="width:95%; margin:0 auto; padding:20px; margin-top: 40px; font-size: 17px">
+        <p class="text-center" style="font-weight:bold; font-size:30px">CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI WEBSITE NHÀ TRỌ XANH LÁ !</p>
+        <br>
+        <p>
+            <span style="font-size: 17px">
+                Nhà Trọ Xanh lá là website quản lý nhà nghỉ, khách sạn với hơn 100 phòng khách sạn sang trọng trải khắp cả nước, đặc biệt là ở 2 thành phố lớn là TP.Hà Nội và TP.Hồ Chí Minh. Nhà Trọ Xanh Lá cung cấp nhiều loại phòng nghỉ sang trọng với đầy đủ tiện nghi và trang thiết bị nhập ngoại được đầu tư bài bản, kiểm định kỹ càng bởi tâm huyết của các chủ đầu tư. Đến với Nhà Trọ Xanh Lá quý khách sẽ hoàn toàn hài lòng với các dịch vụ của những nhà nghỉ/khách sạn trực thuộc hệ thống của chúng tôi.
+                <br><br><br>
+                <div style="text-align:center">
+                <img src="./Assets/User/assets/img/Asten 1.png" style="max-width: 70%">
+                </div>
+                <br><br>
+                Khi quý khách đặt phòng thông qua website đã được kiểm định của chúng tôi, các nhà nghỉ và khách sạn sẽ luôn cung cấp MIỄN PHÍ đầy đủ các tiện nghi như:<br>
+            </span>
+            <ul>
+                <li>
+                    Dịch vụ phục vụ phòng 24/24
+                </li>
+                <li>
+                    Wifi tốc độ cao, băng tần kép
+                </li>
+                <li>
+                    Điều hoà/Máy lạnh/Thang máy vô cùng hiệu quả, được bảo trì định kỳ
+                </li>
+                <li>
+                    Truyền hình vệ tinh với hơn 200 kênh trên toàn quốc
+                </li>
+                <li>
+                    Két an toàn với mật mã điện tử
+                </li>
+                <li>
+                    Dịch vụ giặt ủi quần áo
+                </li>
+                <li>
+                    Dịch vụ trông trẻ
+                </li>
+                <li>
+                    Dịch vụ thu đổi ngoại tệ
+                </li>
+            </ul>
+            <br><br>
+            <div style="text-align:center">
+                <img src="./Assets/User/assets/img/dich-vu-khach-san-la-gi-1.png" style="max-width: 70%">
+            </div>
+            <br><br>
+            <span>
+                Ngoài những dịch vụ miễn phí mang tính tiêu chuẩn, khi đặt phòng quý khách cũng có thể lựa chọn những nhà nghỉ/khách sạn có các dịch vụ TRẢ PHÍ cao cấp hơn như:<br>
+            </span>
+            <ul>
+                <li>
+                    Chuỗi dịch vụ tiện ích như: Sân Golf/Tennis, Phòng tập Gym Fitness,Dịch vụ Spa, Dịch vụ hội họp/văn phòng, Dịch vụ hẹn báo thức,...
+                </li>
+                <li>
+                    Chuỗi dịch vụ ăn uống như: MiniBar, Nhà hàng, Dịch vụ dùng bữa ăn tại phòng,...
+                </li>
+                <li>
+                    Chuỗi dịch vụ vui chơi như: Hồ bơi, Phòng massage/xông hơi, Khu vui chơi cho trẻ em,...
+                </li>
+                <li>
+                    Chuỗi dịch vụ di chuyển và du lịch như: Xe đưa đón sân bay, Dịch vụ thuê xe, Book máy bay, tour du lịch,...
+                </li>
+            </ul>
+            <span>
+                Website mới được xây dựng vào Tháng 1/2024 nên vẫn còn nhiều thiếu sót, mọi ý kiến đóng góp, vui lòng gửi thông tin cho chúng tôi qua:<br>
+            </span>
+            <ul class="footer-adress">
+                <li><i class="pe-7s-map-marker strong"></i> Địa chỉ:&nbsp;&nbsp;<a href="https://maps.app.goo.gl/GKDUdMrkw8GwNKYQ9">Số 10 P. Tạ Quang Bửu, Bách Khoa, Hai Bà Trưng, Hà Nội, Việt Nam</a></li>
+                <li><i class="pe-7s-mail strong"></i> Email:&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:support.eco@gmail.com">support.eco@gmail.com</a></li>
+                <li><i class="pe-7s-call strong"></i> Sđt:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="tel:+84 835778789">+84 835778789</a> </li>
+            </ul>
+        </p>
+    </div>
+</div>
